@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <raveinfosys_dealer_config translate="title" module="raveinfosys_dealer">
+                                        <title>Dealer Search Config</title>
+                                    </raveinfosys_dealer_config>
+                                </children>
+                            </config>
+                        </children>                      
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <raveinfosys_dealer_locator_search>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/raveinfosys/dealer/chosen.proto.min.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/raveinfosys/dealer/style.css</name></action>
+        </reference>
+         <reference name="footer">
+            <remove name="raveinfosys_dealer_box"/>
+        </reference>
+        <reference name="content">
+            <block type="raveinfosys_dealer/search" name="raveinfosys_dealer_search" >
+            </block>
+        </reference>
+    </raveinfosys_dealer_locator_search>
+    <raveinfosys_dealer_locator_map>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="raveinfosys_dealer_map" template="raveinfosys/dealer/map.phtml" />
+            
+        </reference>
+    </raveinfosys_dealer_locator_map>
+</layout>

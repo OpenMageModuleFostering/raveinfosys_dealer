@@ -1,0 +1,359 @@
+<?php $_helper = Mage::helper('raveinfosys_dealer') ?>
+<div class="page-title">
+    <h1><?php echo $_helper->__('Find a dealer') ?></h1>
+</div>
+<?php
+$_searchTypeZip = $_helper->getSearchTypeZip();
+$_searchTypeState = $_helper->getSearchTypeState();
+$_searchTypeCompany = $_helper->getSearchTypeCompany();
+
+$_isSearchByZipEnabled = $_helper->getIsSearchByZipEnabled();
+$_isSearchByStateEnabled = $_helper->getIsSearchByStateEnabled();
+$_isSearchByCompanyEnabled = $_helper->getIsSearchByCompanyEnabled();
+
+$_dealers = $this->getCollection();
+
+//get all registry paramters
+$_searchRequest = Mage::registry('dealer_search_request');
+$_searchTypeDefault = Mage::registry('search_type_default');
+$_searchType = $_searchRequest->getParam('search_type', false);
+
+$_state = $_searchRequest->getParam($_searchTypeState, false);
+$_company = $_searchRequest->getParam($_searchTypeCompany, false);
+$_zip = $_searchRequest->getParam($_searchTypeZip, false);
+$_radioType = 'radio';
+$_hiddenType = 'hidden';
+$_radius = '';
+
+if (!$_searchType) {
+    if($_searchTypeDefault){
+        if(($_searchTypeZip == $_searchTypeDefault && $_isSearchByZipEnabled) ||
+                ($_searchTypeState == $_searchTypeDefault && $_isSearchByStateEnabled) ||
+                ($_searchTypeCompany == $_searchTypeDefault && $_isSearchByCompanyEnabled)
+                ){
+                    $_searchType = $_searchTypeDefault;
+                }else{
+                    $_searchTypeNotSet = true;
+                }
+    }
+    if($_searchTypeNotSet){
+        if ($_isSearchByZipEnabled) {
+            $_searchType = $_searchTypeZip;
+        } else if ($_isSearchByStateEnabled) {
+            $_searchType = $_searchTypeState;
+        } else if ($_isSearchByCompanyEnabled) {
+            $_searchType = $_searchTypeCompany;
+        }
+    }
+}else if( // if type set and that type not enabled
+                ($_searchTypeZip == $_searchType && !$_isSearchByZipEnabled) ||
+                ($_searchTypeState == $_searchType && !$_isSearchByStateEnabled) ||
+                ($_searchTypeCompany == $_searchType && !$_isSearchByCompanyEnabled)
+        ){
+        if ($_isSearchByZipEnabled) {
+            $_searchType = $_searchTypeZip;
+        } else if ($_isSearchByStateEnabled) {
+            $_searchType = $_searchTypeState;
+        } else if ($_isSearchByCompanyEnabled) {
+            $_searchType = $_searchTypeCompany;
+        }
+}
+
+if ($_searchType == $_searchTypeZip) {
+    $_radius = $_searchRequest->getParam('radius', false);
+}
+if (!$_radius && $_radius !== '0') {
+    $_radius = $_helper->getSearchRadiusOptionDefault();
+}
+
+?>
+<div class="dealer_locator_container">
+    <form action="<?php echo $this->getFormAction(); ?>" id="dealerLocatorSearchForm" method="get">
+       <div class="fieldset">
+        <?php if ($_isSearchByZipEnabled) { ?>
+            <?php $_zipInputType = ($_isSearchByStateEnabled || $_isSearchByCompanyEnabled) ? $_radioType : $_hiddenType; ?>
+                <!--<h2 class="legend"><?php echo $this->__('Find a dealer') ?></h2>-->
+                <div class="check_field">
+                    
+                    <div class="check-search-type">
+                        <input type="<?php echo $_zipInputType; ?>" name="search_type" id="zip_search" value="<?php echo $_searchTypeZip ?>" <?php if ($_searchType == $_searchTypeZip): ?>checked="true"<?php endif; ?> />
+                    </div>
+                    <label for="zip_search"><?php echo $_helper->__('Search by ZIP/Postcode') ?></label>
+                </div>
+            <?php } ?>
+
+            <?php if ($_isSearchByStateEnabled) { ?>
+                <?php $_stateInputType = ($_isSearchByZipEnabled || $_isSearchByCompanyEnabled) ? $_radioType : $_hiddenType; ?>
+                <div class="check_field">                    
+                    <div class="check-search-type">
+                        <input type="<?php echo $_stateInputType; ?>" name="search_type" id="state_search" value="<?php echo $_searchTypeState ?>" <?php if ($_searchType == $_searchTypeState): ?>checked="true"<?php endif; ?> />
+                    </div>
+                    <label for="state_search"><?php echo $_helper->__('Search by State') ?></label>
+                </div>
+            <?php } ?>
+
+            <?php if ($_isSearchByCompanyEnabled) { ?>
+                <?php $_companyInputType = ($_isSearchByZipEnabled || $_isSearchByStateEnabled) ? $_radioType : $_hiddenType; ?>
+                <div class="check_field">                    
+                    <div class="check-search-type">
+                        <input type="<?php echo $_companyInputType; ?>" name="search_type" id="company_search" value="<?php echo $_searchTypeCompany ?>" <?php if ($_searchType == $_searchTypeCompany): ?>checked="true"<?php endif; ?> />
+                    </div>
+                    <label for="company_search"><?php echo $_helper->__('Search by Company') ?></label>
+                </div>
+                
+            <?php } ?>
+                <div class="clear"></div>
+
+
+            <?php if ($_isSearchByZipEnabled) { ?>
+                <div id="location_searchByZip">
+                    <ul class="form-list">
+                        <li class="fields">
+                            <div class="field">
+                                <label for="zip" class="required"><em>*</em><?php echo $_helper->__('ZIP/Postcode') ?></label>
+                                <div class="input-box">
+                                    <input maxlength="20" type="text" name="zip" id="zip" title="<?php echo $_helper->__('ZIP/Postcode') ?>" class="required-entry input-text" value="<?php echo $_zip; ?>"/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="radius"><?php echo $_helper->__('Distance in miles') ?></label>
+                                <div class="input-box">
+                                    <select type="text" name="radius" id="radius" title="<?php echo $_helper->__('Distance radius') ?>" data-placeholder="Choose a Radius..." class="dropdown-select" style="width:350px;" tabindex="2">
+                                        <?php $_options = $_helper->getSearchRadiusOptions(); ?>
+                                        <?php foreach ($_options as $_option): ?>
+                                            <?php $_title = ($_option == '0') ? $_helper->__('Any Distance') : sprintf('%s %s', $_option, $_helper->__('miles')); ?>
+                                        <option value="<?php echo $_option; ?>" <?php if ($_radius == $_option): ?>selected="selected"<?php endif; ?>><?php echo $_title?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
+
+            <?php if ($_isSearchByStateEnabled) { ?>
+                <div id="location_searchByState" style="display: none;">
+                    <ul class="form-list">
+                        <li class="fields">
+                            <label for="state" class="required"><em>*</em><?php echo $_helper->__('State') ?></label>
+                            <div class="input-box">
+                                <select  type="text" name="state" id="state" title="<?php echo $_helper->__('State') ?>" data-placeholder="Choose a State..." class="dropdown-select" tabindex="2">
+                                    <?php $regions = $_helper->getDealerRegions(); ?>
+                                    <?php foreach ($regions as $region): ?>
+                                        <option value="<?php echo $region ?>" <?php if ($_state == $region): ?>selected="selected"<?php endif; ?> ><?php echo $region ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            <?php } ?>
+
+            <?php if ($_isSearchByCompanyEnabled) { ?>
+                <div id="location_searchByCompany" style="display: none;">
+                    <ul class="form-list">
+                        <li class="fields">
+                            <label for="company" class="required"><em>*</em><?php echo $_helper->__('Company') ?></label>
+                            <div class="input-box">
+                                <select type="text" name="company" id="company" title="<?php echo $_helper->__('Company') ?>" data-placeholder="Choose a Company..." class="dropdown-select" style="width:350px;" tabindex="2" >
+                                    <?php $companies = $_helper->getDealerCompanies(); ?>
+                                    <?php foreach ($companies as $company): ?>
+                                        <option value="<?php echo $company ?>" <?php if ($_company == $company): ?>selected="selected"<?php endif; ?> ><?php echo $company ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </div>                
+            <?php } ?>
+            <div class="clear"></div>    
+        </div>
+        <div class="buttons-set">
+            <p class="required"><?php echo $_helper->__('* Required Fields') ?></p>
+            <button type="submit" title="<?php echo $_helper->__('Search') ?>" class="button"><span><span><?php echo $_helper->__('Search') ?></span></span></button>
+        </div>
+    </form>
+
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        var dealerLocatorSearchForm = new VarienForm('dealerLocatorSearchForm', true);
+
+
+        Event.observe(window, 'load', function() {
+
+<?php if ($_isSearchByZipEnabled) { ?>
+                $('zip_search').observe('click', function(el) {
+                    hideZip(0);
+                    hideState(1);
+                    hideCompany(1);
+                });
+<?php } ?>
+
+<?php if ($_isSearchByStateEnabled) { ?>
+                $('state_search').observe('click', function(el) {
+                    hideZip(1);
+                    hideState(0);
+                    hideCompany(1);
+                });
+<?php } ?>
+
+<?php if ($_isSearchByCompanyEnabled) { ?>
+                $('company_search').observe('click', function(el) {
+                    hideZip(1);
+                    hideState(1);
+                    hideCompany(0);
+                });
+<?php } ?>
+        });
+
+        function hideZip(shouldHide)
+        {
+<?php if ($_isSearchByZipEnabled) { ?>hideElement(shouldHide, 'location_searchByZip')<?php } ?>
+        }
+
+        function hideState(shouldHide)
+        {
+<?php if ($_isSearchByStateEnabled) { ?>hideElement(shouldHide, 'location_searchByState')<?php } ?>
+        }
+
+        function hideCompany(shouldHide)
+        {
+<?php if ($_isSearchByCompanyEnabled) { ?>hideElement(shouldHide, 'location_searchByCompany')<?php } ?>
+        }
+
+        function hideElement(shouldHide, elementName)
+        {
+            if (shouldHide) {
+                $(elementName).hide();
+            } else {
+                $(elementName).show();
+            }
+        }
+
+        function hideAll(shouldHide)
+        {
+            hideZip(shouldHide);
+            hideState(shouldHide);
+            hideCompany(shouldHide);
+        }
+
+        hideZip(<?php
+if ($_searchType == $_searchTypeZip) {
+    echo '0';
+} else {
+    echo '1';
+}
+?>);
+        hideState(<?php
+if ($_searchType == $_searchTypeState) {
+    echo '0';
+} else {
+    echo '1';
+}
+?>);
+        hideCompany(<?php
+if ($_searchType == $_searchTypeCompany) {
+    echo '0';
+} else {
+    echo '1';
+}
+?>);
+
+        //]]>
+    </script>
+
+    <?php if (sizeof($_dealers) > 0) { ?>
+        <div id="searchResultMainContainer">
+            <div class="search_results">
+                <?php echo $this->getPagerHtml(); ?>
+                <div class="result_heading">
+                    <?php
+                    if($this->getPagerHtml() == ''){
+                        echo count($_dealers).$_helper->__(' Record(s) Found');
+                    }else{
+                        echo $_helper->__('Search Result');
+                    }?>
+                </div>
+                  
+                        <?php $i=0; foreach ($_dealers as $dealer):  ?>
+                        <?php
+                        $_dealerGeoLatitude = $dealer->getGeoLatitude() ? $dealer->getGeoLatitude() : 0;
+                        $_dealerGeoLongitude = $dealer->getGeoLongitude() ? $dealer->getGeoLongitude() : 0;
+                        $_dealerCountry =  Mage::getModel('directory/country')->loadByCode($dealer->getCountry())->getName();
+                        if($dealer->getGeoLatitude() && $dealer->getGeoLongitude()){
+                            $_mapParamStr = 'address='.$dealer->getStreet1().' '.$dealer->getCity().', '.$dealer->getPostcode().', '.$_dealerCountry;
+                            $_mapParamStr .= '&lat='.$dealer->getGeoLatitude().'&lon='.$dealer->getGeoLongitude();
+                            $_showMap = true;
+                        }
+                        ?>
+                        
+                        
+               <div class="result <?php if(++$i%2 == 0) echo ' last'; ?>">
+
+                <div class="left-col">
+                    <?php if($dealer->getDistance()): ?>
+                    <div class="distance">
+                        <?php echo number_format($dealer->getDistance(), 2, '.', ''); ?><span>miles</span>
+                    </div>
+                    <?php endif;?>
+                    <?php if($_showMap):?>
+                    <div class="preferred-star">
+                        <a target="_blank" href="<?php echo Mage::getBaseUrl()."dealer/locator/map?".$_mapParamStr; ?>">
+                            <img src="<?php echo $this->getSkinUrl('images/raveinfosys/dealer/google_maps/marker.png') ?>">
+                        </a>
+                    </div>
+                    <?php endif;?>
+                </div>
+                <div class="address">
+                   <p>
+                        <strong><?php echo $dealer->getCompany() ?></strong><br>
+                        <?php echo $dealer->getStreet1() ?><br>
+                        <?php echo $dealer->getCity() ?>,<?php echo $dealer->getRegion() ?> - <?php echo $dealer->getPostcode() ?><br>
+                        <?php echo $_dealerCountry;?><br>
+                        <?php if($dealer->getTelephone()) echo 'P: '.$dealer->getTelephone()?><br>
+                        <?php if($dealer->getEmail()) echo 'Email: '.$dealer->getEmail()?><br>
+                        <?php if($dealer->getWebsiteUrl() != ''): ?>
+                            <a target="_blank" href="http://<?php echo $dealer->getWebsiteUrl() ?>"><?php echo $dealer->getWebsiteUrl() ?></a>
+                        <?php endif; ?>
+                   </p>
+                </div>
+              </div>
+                    
+                        <?php endforeach; ?>
+
+            </div>
+        </div>
+<?php }else if($_searchRequest->getParam('search_type', false) != ''){ ?>
+<div class="no_result"><?php echo $_helper->__('No dealer found'); ?></div>
+<?php }?>
+<?php   $magentoVersion = Mage::getVersion();
+        if (version_compare($magentoVersion, '1.6', '>=')):
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    document.observe('dom:loaded', function(evt) {
+        var select, selects, _i, _len, _results;
+        if (Prototype.Browser.IE && (Prototype.BrowserFeatures['Version'] === 6 || Prototype.BrowserFeatures['Version'] === 7)) {
+            return;
+        }
+        selects = $$(".dropdown-select");
+        _results = [];
+
+        for (_i = 0, _len = selects.length; _i < _len; _i++) {
+            select = selects[_i];
+            _results.push(new Chosen(select));
+        }
+        deselects = $$(".dropdown-select-deselect");
+        for (_i = 0, _len = deselects.length; _i < _len; _i++) {
+            select = deselects[_i];
+            _results.push(new Chosen(select, {allow_single_deselect: true}));
+        }
+        return _results;
+    });
+    //]]>
+</script>
+<?php  endif;?>

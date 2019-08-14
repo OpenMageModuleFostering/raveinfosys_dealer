@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Raveinfosys_Dealer",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "Dealer search allows you to search all near by dealer's Stores locations",
+    "authors": [
+    {
+        "name": "Raveinfosys",
+        "email": "magento@raveinfosys.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

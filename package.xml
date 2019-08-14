@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+    <name>Raveinfosys_Dealer</name>
+    <version>1.0.0</version>
+    <stability>stable</stability>
+    <license>OSL v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Dealer search allows you to search all near by dealer's Stores locations</summary>
+    <description>Administrator can Create dealers and manage mutiple location of them using dealer search extension. Users can search for a dealer location by searching by Zip/Postcode, state and company name.&#xD;
+In the admin panel, you can configure display radius/distance ranges and manage the filters to display in frontend.&#xD;
+For each dealer, you can create or modify the contact information and the location details.&#xD;
+Dealer Search extension allows you to search dealer locations.</description>
+    <notes>First release</notes>
+    <authors><author><name>Raveinfosys</name><user>raveinfo</user><email>magento@raveinfosys.com</email></author></authors>
+    <date>2015-01-05</date>
+    <time>13:45:53</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="Raveinfosys_Dealer.xml" hash="960d22c50c2cc8b3faf847d1721eb757"/></dir></target><target name="magecommunity"><dir name="Raveinfosys"><dir name="Dealer"><dir name="Block"><file name="Search.php" hash="50c110b79949ea552df3f8061c67e6e3"/></dir><dir name="Helper"><file name="Data.php" hash="6331222aed3abdfd2cb90d4b802403c7"/></dir><dir name="Model"><dir name="Config"><dir name="Radius"><file name="Options.php" hash="218cf66a5fed580c5c4f66a1823058bb"/></dir><dir name="Searchtypes"><file name="Options.php" hash="dab761269d612e714f8d2f4db2dfaa9c"/></dir></dir><file name="Observer.php" hash="fac731fbb83b2d7c9a4fcf2c117b5ab0"/></dir><dir name="controllers"><file name="LocatorController.php" hash="155489c637ec8f1f20cb3e37167535d4"/></dir><dir name="etc"><file name="adminhtml.xml" hash="89038f30e6ab64f18e49a2cc1fea5551"/><file name="config.xml" hash="8db00c7c7c2dd69b4466506560d43693"/><file name="system.xml" hash="e58cd76cff4e3b548423d96a190df814"/></dir><dir name="sql"><dir name="raveinfosys_dealer_setup"><file name="mysql4-install-1.0.0.0.php" hash="ae5f9644c13d8282203a2b037fd25c1f"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="raveinfosys_dealer.xml" hash="c934f269337feddc48d1312e3517f418"/></dir><dir name="template"><dir name="raveinfosys"><dir name="dealer"><file name="map.phtml" hash="d3b4393d924816a3c08cae014648b01c"/><file name="search.phtml" hash="636b08792790a4c477d486bb733bdf72"/></dir></dir></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><dir name="raveinfosys"><dir name="dealer"><file name="style.css" hash="db3fb22773e7322b8852f9d2d25f080b"/></dir></dir></dir><dir name="images"><dir name="raveinfosys"><dir name="dealer"><file name="chosen-sprite.png" hash="8e70d120437ffc6a1bf7cebeca292d5c"/><dir name="google_maps"><file name="marker.png" hash="fb8037532ab421c32c621dbff6f4f1cf"/></dir></dir></dir></dir><dir name="js"><dir name="raveinfosys"><dir name="dealer"><file name="chosen.proto.min.js" hash="4bebbd711d9ceec30e3e30cb92550ea3"/></dir></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>5.6.3</max></php><package><name/><channel>connect.magentocommerce.com/core</channel><min/><max/></package></required></dependencies>
+</package>

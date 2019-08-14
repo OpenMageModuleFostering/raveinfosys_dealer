@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Raveinfosys_Dealer>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Customer />
+            </depends>            
+        </Raveinfosys_Dealer>
+    </modules>
+</config>

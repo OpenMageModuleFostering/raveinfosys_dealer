@@ -1,0 +1,478 @@
+/* @group Base */
+.dropdown-container {
+  font-size: 13px;
+  position: relative;
+  display: inline-block;
+  zoom: 1;
+  display: inline;
+}
+.dropdown-container .dropdown-drop {
+  background: #fff;
+  border: 1px solid #aaa;
+  border-top: 0;
+  position: absolute;
+  top: 35px;
+  html> top: 35px;
+  left: 0;
+  -webkit-box-shadow: 0 4px 5px rgba(0,0,0,.15);
+  -moz-box-shadow   : 0 4px 5px rgba(0,0,0,.15);
+  box-shadow        : 0 4px 5px rgba(0,0,0,.15);
+  z-index: 1010;
+}
+@-moz-document url-prefix() {
+    .dropdown-drop {
+        top: 47px !important;
+    }
+}
+/*-- for IE --*/
+:root .dropdown-drop {
+        top: 47px \0  !important;
+    }
+
+/* @end */
+
+/* @group Single Chosen */
+.dropdown-container-single .dropdown-single {
+  background-color: #ffffff;
+  border: 1px solid #aaaaaa;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 0 0 8px;
+  color: #444444;
+  text-decoration: none;
+}
+.dropdown-container-single .dropdown-default {
+  color: #999;
+}
+.dropdown-container-single .dropdown-single span {
+  margin-right: 26px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.dropdown-container-single .dropdown-single abbr {
+  display: block;
+  position: absolute;
+  right: 26px;
+  top: 6px;
+  width: 12px;
+  height: 13px;
+  font-size: 1px;
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') right top no-repeat;
+}
+.dropdown-container-single .dropdown-single abbr:hover {
+  background-position: right -11px;
+}
+.dropdown-container-single.dropdown-disabled .dropdown-single abbr:hover {
+  background-position: right top;
+}
+.dropdown-container-single .dropdown-single div {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  height: 100%;
+  width: 18px;
+}
+.dropdown-container-single .dropdown-single div b {
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat 0 5px;
+  display: block;
+  width: 100%;
+  height: 100%;
+    border-left:1px solid #aaa;
+}
+.dropdown-container-single .dropdown-search {
+  padding: 3px 4px;
+  position: relative;
+  margin: 0;
+  white-space: nowrap;
+  z-index: 1010;
+}
+.dropdown-container-single .dropdown-search input {
+  background: #fff url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat 100% -22px;
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat 100% -22px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat 100% -22px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat 100% -22px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat 100% -22px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat 100% -22px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+  margin: 1px 0;
+  padding: 4px 20px 4px 5px;
+  outline: 0;
+  border: 1px solid #aaa;
+  font-family: sans-serif;
+  font-size: 1em;
+}
+.dropdown-container-single .dropdown-drop {
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius   : 0 0 4px 4px;
+  border-radius        : 0 0 4px 4px;
+  -moz-background-clip   : padding;
+  -webkit-background-clip: padding-box;
+  background-clip        : padding-box;
+}
+/* @end */
+
+.dropdown-container-single-nosearch .dropdown-search input {
+  position: absolute;
+  left: -9000px;
+}
+
+/* @group Multi Chosen */
+.dropdown-container-multi .dropdown-choices {
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
+  border: 1px solid #aaa;
+  margin: 0;
+  padding: 0;
+  cursor: text;
+  overflow: hidden;
+  height: auto !important;
+  height: 1%;
+  position: relative;
+}
+.dropdown-container-multi .dropdown-choices li {
+  float: left;
+  list-style: none;
+}
+.dropdown-container-multi .dropdown-choices .search-field {
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+.dropdown-container-multi .dropdown-choices .search-field input {
+  color: #666;
+  background: transparent !important;
+  border: 0 !important;
+  font-family: sans-serif;
+  font-size: 100%;
+  height: 15px;
+  padding: 5px;
+  margin: 1px 0;
+  outline: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow   : none;
+  box-shadow        : none;
+}
+.dropdown-container-multi .dropdown-choices .search-field .default {
+  color: #999;
+}
+.dropdown-container-multi .dropdown-choices .search-choice {
+  -webkit-border-radius: 3px;
+  -moz-border-radius   : 3px;
+  border-radius        : 3px;
+  -moz-background-clip   : padding;
+  -webkit-background-clip: padding-box;
+  background-clip        : padding-box;
+  background-color: #e4e4e4;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0 ); 
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
+  background-image: -webkit-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-image: -moz-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-image: -o-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%); 
+  -webkit-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+  -moz-box-shadow   : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+  box-shadow        : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+  color: #333;
+  border: 1px solid #aaaaaa;
+  line-height: 13px;
+  padding: 3px 20px 3px 5px;
+  margin: 3px 0 3px 5px;
+  position: relative;
+  cursor: default;
+}
+.dropdown-container-multi .dropdown-choices .search-choice-focus {
+  background: #d4d4d4;
+}
+.dropdown-container-multi .dropdown-choices .search-choice .search-choice-close {
+  display: block;
+  position: absolute;
+  right: 3px;
+  top: 4px;
+  width: 12px;
+  height: 13px;
+  font-size: 1px;
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') right top no-repeat;
+}
+.dropdown-container-multi .dropdown-choices .search-choice .search-choice-close:hover {
+  background-position: right -11px;
+}
+.dropdown-container-multi .dropdown-choices .search-choice-focus .search-choice-close {
+  background-position: right -11px;
+}
+/* @end */
+
+/* @group Results */
+.dropdown-container .dropdown-results {
+  margin: 0 4px 4px 0;
+  max-height: 240px;
+  padding: 0 0 0 4px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.dropdown-container-multi .dropdown-results {
+  margin: -1px 0 0;
+  padding: 0;
+}
+.dropdown-container .dropdown-results li {
+  display: none;
+  line-height: 15px;
+  padding: 5px 6px;
+  margin: 0;
+  list-style: none;
+}
+.dropdown-container .dropdown-results .active-result {
+  cursor: pointer;
+  display: list-item;
+}
+.dropdown-container .dropdown-results .highlighted {
+  background-color: #827664;
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3875d7', endColorstr='#2a62bc', GradientType=0 );  */
+  /*background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #3875d7), color-stop(90%, #2a62bc));*/
+  /*background-image: -webkit-linear-gradient(top, #3875d7 20%, #2a62bc 90%);*/
+  /*background-image: -moz-linear-gradient(top, #3875d7 20%, #2a62bc 90%);*/
+  /*background-image: -o-linear-gradient(top, #3875d7 20%, #2a62bc 90%);*/
+  /*background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);*/
+  color: #fff;
+}
+.dropdown-container .dropdown-results li em {
+  background: #feffde;
+  font-style: normal;
+}
+.dropdown-container .dropdown-results .highlighted em {
+  background: transparent;
+}
+.dropdown-container .dropdown-results .no-results {
+  background: #f4f4f4;
+  display: list-item;
+}
+.dropdown-container .dropdown-results .group-result {
+  cursor: default;
+  color: #999;
+  font-weight: bold;
+}
+.dropdown-container .dropdown-results .group-option {
+  padding-left: 15px;
+}
+.dropdown-container-multi .dropdown-drop .result-selected {
+  display: none;
+}
+.dropdown-container .dropdown-results-scroll {
+  background: white;
+  margin: 0 4px;
+  position: absolute;
+  text-align: center;
+  width: 321px; /* This should by dynamic with js */
+  z-index: 1;
+}
+.dropdown-container .dropdown-results-scroll span {
+  display: inline-block;
+  height: 17px;
+  text-indent: -5000px;
+  width: 9px;
+}
+.dropdown-container .dropdown-results-scroll-down {
+  bottom: 0;
+}
+.dropdown-container .dropdown-results-scroll-down span {
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -4px -3px;
+}
+.dropdown-container .dropdown-results-scroll-up span {
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -22px -3px;
+}
+/* @end */
+
+/* @group Active  */
+.dropdown-container-active .dropdown-single {
+  border: 1px solid #B75925;
+}
+.dropdown-container-active .dropdown-single-with-drop {
+  border: 1px solid #aaa;
+  -webkit-box-shadow: 0 1px 0 #fff inset;
+  -moz-box-shadow   : 0 1px 0 #fff inset;
+  box-shadow        : 0 1px 0 #fff inset;
+  background-color: #eee;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0 );
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #eeeeee), color-stop(80%, #ffffff));
+  background-image: -webkit-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
+  background-image: -moz-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
+  background-image: -o-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
+  background-image: linear-gradient(#eeeeee 20%, #ffffff 80%);
+  -webkit-border-bottom-left-radius : 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomleft : 0;
+  -moz-border-radius-bottomright: 0;
+  border-bottom-left-radius : 0;
+  border-bottom-right-radius: 0;
+}
+.dropdown-container-active .dropdown-single-with-drop div {
+  background: transparent;
+  border-left: none;
+}
+.dropdown-container-active .dropdown-single-with-drop div b {
+  background-position: -18px 5px;
+}
+.dropdown-container-active .dropdown-choices {
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+  -moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+  box-shadow        : 0 0 5px rgba(0,0,0,.3);
+  border: 1px solid #5897fb;
+}
+.dropdown-container-active .dropdown-choices .search-field input {
+  color: #111 !important;
+}
+/* @end */
+
+/* @group Disabled Support */
+.dropdown-disabled {
+  cursor: default;
+  opacity:0.5 !important;
+}
+.dropdown-disabled .dropdown-single {
+  cursor: default;
+}
+.dropdown-disabled .dropdown-choices .search-choice .search-choice-close {
+  cursor: default;
+}
+
+/* @group Right to Left */
+.dropdown-rtl { text-align: right; }
+.dropdown-rtl .dropdown-single { padding: 0 8px 0 0; overflow: visible; }
+.dropdown-rtl .dropdown-single span { margin-left: 26px; margin-right: 0; direction: rtl; }
+
+.dropdown-rtl .dropdown-single div { left: 3px; right: auto; }
+.dropdown-rtl .dropdown-single abbr {
+  left: 26px;
+  right: auto;
+}
+.dropdown-rtl .dropdown-choices .search-field input { direction: rtl; }
+.dropdown-rtl .dropdown-choices li { float: right; }
+.dropdown-rtl .dropdown-choices .search-choice { padding: 3px 5px 3px 19px; margin: 3px 5px 3px 0; }
+.dropdown-rtl .dropdown-choices .search-choice .search-choice-close { left: 4px; right: auto; background-position: right top;}
+.dropdown-rtl.dropdown-container-single .dropdown-results { margin: 0 0 4px 4px; padding: 0 4px 0 0; }
+.dropdown-rtl .dropdown-results .group-option { padding-left: 0; padding-right: 15px; }
+.dropdown-rtl.dropdown-container-active .dropdown-single-with-drop div { border-right: none; }
+.dropdown-rtl .dropdown-search input {
+  background: #fff url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -38px -22px;
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -38px -22px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -38px -22px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);  
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -38px -22px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -38px -22px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../../../images/raveinfosys/dealer/chosen-sprite.png') no-repeat -38px -22px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+  padding: 4px 5px 4px 20px;
+  direction: rtl;
+}
+/* @end */
+
+
+
+/* Dealer Page Design */
+
+.clear{clear:both;}
+.dealer_locator_container {padding:0 0 20px;}
+.dealer_locator_container h2{}
+.dealer_locator_container .fieldset{}
+.dealer_locator_container .fieldset .check_field{float:left; width:auto; margin:0 20px 0 0;}
+.dealer_locator_container .fieldset .check_field .check-search-type{float:left; margin:0 8px 0 0;}
+.dealer_locator_container .fieldset .check_field label{float:left;}
+
+#location_searchByZip .fields, #location_searchByState .fields, #location_searchByCompany .fields{ margin: 20px 20px 0 0;}
+#location_searchByZip .fields .field, #location_searchByState .fields .field, #location_searchByCompany .fields .field{
+    float: left; width: auto; margin: 0px 20px 0 0;}
+#location_searchByZip .fields .field .input-box input[type="text"]{height:auto; padding:6px;}
+#location_searchByState{width:40%;}
+#location_searchByCompany{width:40%;}
+#location_searchByZip .field .input-box{width:348px;}
+
+#location_searchByState .dropdown-container-single .dropdown-single{width:363px;}
+#location_searchByCompany .dropdown-container-single .dropdown-single{width:348px;}
+
+
+/*-- SEARCH RESULT --*/
+.search_results .result {
+    border: 1px solid #ddd;
+    float: left;
+    margin: 0 14px 20px 0;
+    min-height: 184px;
+    width:49%;
+}
+.search_results .last{margin-right:0px;}
+.search_results .result .left-col {
+    border-right: 1px solid #ddd;
+    float: left;
+    height: 188px;
+    width: 25%;
+}
+.search_results .result .distance {
+    border-bottom: 1px solid #ddd;
+    color: #302b2c;
+    font-size: 18px;
+    /*height: 56px;*/
+    padding: 20px 0 10px;
+    text-align: center;
+}
+.search_results .result .distance span {
+    display: block;
+    font-size: 12px;
+}
+.search_results .result .preferred-star {
+    padding-top: 35px;
+    text-align: center;
+}
+.search_results .result .preferred-star img{
+    text-align: center; display:inline;
+}
+ 
+ 
+ 
+ 
+.search_results .result .address {
+    /*border-right: 1px solid #929292;*/
+    float: left;
+    font-size: 14px;
+    height: 162px;
+    line-height: 23px;
+    padding: 26px 0 0 3%;
+    width: 70%;
+}
+.search_results .result .map {
+    float: left;
+    overflow: hidden;
+    width: 487px;
+}
+.search_results {
+/*    min-height: 500px;*/
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin:20px 0;
+}
+.search_results .result_heading{border-bottom:1px solid #ededed; font-size:18px; text-transform:uppercase; padding:8px 0;
+margin:0 0 15px;}
+/*.footer .block-title{border-top:none;}*/
+.no_result{color:#f00; border:1px solid #ddd; padding:10px; margin:15px 0;}
+#map_canvas{width:80%; height:500px; margin:0px auto;}
+
+
+@media only screen and (max-width: 767px) {
+
+.search_results .result { width: 100%;}
+.search_results .result .distance { font-size: 14px;}
+#location_searchByZip .field .input-box {width: 290px;}
+#location_searchByState .dropdown-container-single .dropdown-single { width: 290px;}
+#location_searchByCompany .dropdown-container-single .dropdown-single { width: 290px;}
+
+    
+}
